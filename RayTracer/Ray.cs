@@ -18,5 +18,10 @@ namespace RayTracer
         }
   
         public Vec3 At(double t) => origin + t * direction;
+
+        public override string ToString()
+        {
+            return $"Origin: {origin}, Direction: {direction}";
+        }
     }
 }

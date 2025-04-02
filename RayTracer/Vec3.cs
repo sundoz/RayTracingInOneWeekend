@@ -13,8 +13,8 @@ namespace RayTracer
         public double X { get; }
         public double Y { get; }
         public double Z { get; }
-        public double length { get; }
-        public double lengthSquared { get; }
+        public double Length { get; }
+        public double LengthSquared { get; }
         
     }
     internal class Vec3 : IVec3
@@ -32,9 +32,9 @@ namespace RayTracer
         public double Y => e1;
         public double Z => e2;
 
-        public static Vec3 operator -(Vec3 e) => new Vec3(-e.X, -e.Y, -e.Z);
+        public static Vec3 operator -(Vec3 e) => new Vec3(-e.e0, -e.e1, -e.e2);
 
-        public static Vec3 operator -(Vec3 a, Vec3 b) => new Vec3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+        public static Vec3 operator -(Vec3 a, Vec3 b) => new Vec3(a.e0 - b.e0, a.e1 - b.e1, a.e2 - b.e2);
 
         public double this[int i]
         {
@@ -68,21 +68,25 @@ namespace RayTracer
 
         public static Vec3 operator /(Vec3 a, double t) => a * (1 / t);
 
-        public double lengthSquared => e0 * e0 + e1 * e1 + e2 * e2;
+        public double LengthSquared => e0 * e0 + e1 * e1 + e2 * e2;
 
-        public double length => Math.Sqrt(lengthSquared);
+        public double Length => Math.Sqrt(LengthSquared);
 
-        public double dot(Vec3 u, Vec3 v) => u.e0 * v.e0 + u.e1 * v.e1 + u.e2 * v.e2;
+        public static double Dot(Vec3 u, Vec3 v) => u.e0 * v.e0 + u.e1 * v.e1 + u.e2 * v.e2;
 
-        public Vec3 cross(Vec3 u, Vec3 v)
+        public static Vec3 Cross(Vec3 u, Vec3 v)
         {
             return new Vec3(u.e1 * v.e2 - u.e2 * v.e1,
                             u.e2 * v.e0 - u.e0 * v.e2,
                             u.e0 * v.e1 - u.e1 * v.e0);
         }
 
-        public static Vec3 unitVector(Vec3 v) => v / v.length;
+        public static Vec3 UnitVector(Vec3 v) => v / v.Length;
 
+        public override string ToString()
+        {
+            return $"{e0} {e1} {e2}";
+        }
     }
 
 }
