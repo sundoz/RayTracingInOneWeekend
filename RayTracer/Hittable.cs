@@ -7,14 +7,22 @@ using System.Threading.Tasks;
 using Vec3Point = RayTracer.Vec3;
 namespace RayTracer
 {
-    class Hit_record
+    class HitRecord
     {
         public Vec3Point Point;
         public Vec3 Normal;
         public double T;
+        public bool FrontFace;
+
+        public void SetFaceNormal(Ray r, Vec3 outwardNormal)
+        {
+            this.FrontFace = Vec3.Dot(r.direction, outwardNormal) < 0;
+            this.Normal = FrontFace ? outwardNormal : -outwardNormal;
+        }
     }
     interface Hittable
     {
-        public bool Hit(Ray r, double t_min, double t_max, ref Hit_record rec);
+        public bool Hit(Ray r, Interval rayT, ref HitRecord rec);
+
     }
 }

@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace RayTracer
    
 {
-    partial class Utils
+    partial class Color
     {
         public static void WriteColor(StreamWriter streamWriter, Vec3 pixelColor)
         {
-            int ir = (int)(255.999 * pixelColor.X);
-            int ig = (int)(255.999 * pixelColor.Y);
-            int ib = (int)(255.999 * pixelColor.Z);
-            streamWriter.WriteLine(ir + " " + ig + " " + ib);
+            Interval intensity = new(0.000, 0.999);
+
+            int rbyte = (int)(256 * intensity.Clamp(pixelColor.X));
+            int gbyte = (int)(256 * intensity.Clamp(pixelColor.Y));
+            int bbyte = (int)(256 * intensity.Clamp(pixelColor.Z));
+            streamWriter.WriteLine(rbyte + " " + gbyte + " " + bbyte);
         }
     }
 }

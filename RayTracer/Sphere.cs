@@ -18,7 +18,7 @@ namespace RayTracer
             this.radius = Math.Max(radius, 0);
         }
 
-        public bool Hit(Ray r, double rayTMin, double rayTMax, ref Hit_record rec)
+        public bool Hit(Ray r, Interval rayT, ref HitRecord rec)
         {
             Vec3 oc = center - r.origin;
             double a = r.direction.LengthSquared;
@@ -36,10 +36,10 @@ namespace RayTracer
             // Find the nearest root that lies in the acceptable range.
 
             double root = (h - sqrtd) / a;
-            if (root <= rayTMin || root >= rayTMax)
+            if (!rayT.Surrounds(root))
             {
                 root = (h + sqrtd) / a;
-                if  (root <= rayTMin || root >= rayTMax)
+                if  (!rayT.Surrounds(root))
                 {
                     return false;
                 }
@@ -47,7 +47,8 @@ namespace RayTracer
 
             rec.T = root;
             rec.Point = r.At(rec.T);
-            rec.Normal = (rec.Point - center) / radius;
+            Vec3 outwardNormal = (rec.Point - center) / radius;
+            rec.SetFaceNormal(r, outwardNormal);
             return true;
         }
     }

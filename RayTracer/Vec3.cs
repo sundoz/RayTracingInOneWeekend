@@ -87,6 +87,43 @@ namespace RayTracer
         {
             return $"{e0} {e1} {e2}";
         }
+
+        public static Vec3 Random()
+        {
+            return new Vec3(RWUtils.RandomDouble(), RWUtils.RandomDouble(), RWUtils.RandomDouble());
+        }
+
+        public static Vec3 Random(double min, double max)
+        {
+            return new Vec3(RWUtils.RandomDouble(min, max), RWUtils.RandomDouble(min, max), RWUtils.RandomDouble(min, max));
+        }
+
+        public static Vec3 RandomUnitVector()
+        {
+            while (true)
+            {
+                Vec3 p = Vec3.Random(-1, 1);
+                double lensq = p.LengthSquared;
+                if (1e-160 < lensq && lensq >= 1)
+                {
+                    return p / Math.Sqrt(lensq);
+                }
+            }
+        }
+
+        public static Vec3 RanodomOnHemisphere(Vec3 normal)
+        {
+            Vec3 onUnitSphere = Vec3.RandomUnitVector();
+
+            if (Vec3.Dot(onUnitSphere, normal) > 0)
+            {
+                return onUnitSphere;
+            }
+            else
+            {
+                return -onUnitSphere;
+            }
+        }
     }
 
 }
