@@ -141,6 +141,17 @@ namespace RayTracer
             Vec3 rOutParallel = -Math.Sqrt(Math.Abs(1.0 - rOutPerp.LengthSquared)) * n;
             return rOutPerp + rOutParallel;
         }
+        public static Vec3 RandomInUnitDisk()
+        {
+            while (true)
+            {
+                Vec3 p = new(RWUtils.RandomDouble(-1, 1), RWUtils.RandomDouble(-1, 1), 0);
+                if (p.LengthSquared < 1)
+                {
+                    return p;
+                }
+            }
+        }
     }
 
 }
