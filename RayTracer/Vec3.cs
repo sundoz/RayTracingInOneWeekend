@@ -124,6 +124,23 @@ namespace RayTracer
                 return -onUnitSphere;
             }
         }
+        public bool NearZero()
+        {
+            double s = 1e-8;
+            return (Math.Abs(e0) < s) && (Math.Abs(e1) < s) && (Math.Abs(e2) < s);
+        }
+        public static Vec3 Reflect(Vec3 v, Vec3 n)
+        {
+            return v - 2 * Dot(v, n) * n;
+        }
+
+        public static Vec3 Refract(Vec3 uv, Vec3 n, double etaiOverEtat)
+        {
+            double cosTheta = Math.Min(Dot(-uv, n), 1.0);
+            Vec3 rOutPerp = etaiOverEtat * (uv + cosTheta * n);
+            Vec3 rOutParallel = -Math.Sqrt(Math.Abs(1.0 - rOutPerp.LengthSquared)) * n;
+            return rOutPerp + rOutParallel;
+        }
     }
 
 }

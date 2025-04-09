@@ -90,8 +90,11 @@ namespace RayTracer
             HitRecord rec = new HitRecord();
             if (world.Hit(ray, new Interval(0.001, double.PositiveInfinity), ref rec))
             {
-                Vec3 direction = Vec3.RanodomOnHemisphere(rec.Normal);
-                return 0.5 * RayColor(new Ray(rec.Point,  direction), depth - 1, world);
+                Ray scattered = new Ray();
+                Vec3Color attenuation = new Vec3Color(0, 0, 0);
+                if (rec.Material.Scatter(ray, rec, ref attenuation, ref scattered))
+                    return attenuation * RayColor(scattered, depth - 1, world);
+                return new Vec3Color(0, 0, 0);
             }
             Vec3 unitDirection = Vec3.UnitVector(ray.direction);
             double a = 0.5 * (unitDirection.Y + 1.0);

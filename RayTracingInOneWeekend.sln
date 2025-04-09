@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer", "RayTracer\RayTracer.csproj", "{4C8BE7C7-9343-47F9-B6AE-11E8B54531FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMVIewer", "PPMVIewer\PPMVIewer.csproj", "{EE2A723A-FD91-490E-AD12-97F29857981A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4C8BE7C7-9343-47F9-B6AE-11E8B54531FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C8BE7C7-9343-47F9-B6AE-11E8B54531FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C8BE7C7-9343-47F9-B6AE-11E8B54531FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2A723A-FD91-490E-AD12-97F29857981A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2A723A-FD91-490E-AD12-97F29857981A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2A723A-FD91-490E-AD12-97F29857981A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2A723A-FD91-490E-AD12-97F29857981A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

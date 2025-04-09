@@ -11,11 +11,13 @@ namespace RayTracer
     {
         private Vec3 center;
         private double radius;
+        private Material material;
 
-        public Sphere(Vec3 center, double radius)
+        public Sphere(Vec3 center, double radius, Material material)
         {
             this.center = center;
             this.radius = Math.Max(radius, 0);
+            this.material = material;
         }
 
         public bool Hit(Ray r, Interval rayT, ref HitRecord rec)
@@ -49,6 +51,8 @@ namespace RayTracer
             rec.Point = r.At(rec.T);
             Vec3 outwardNormal = (rec.Point - center) / radius;
             rec.SetFaceNormal(r, outwardNormal);
+            rec.Material = material;
+
             return true;
         }
     }

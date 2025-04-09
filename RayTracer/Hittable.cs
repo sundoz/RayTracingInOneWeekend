@@ -11,6 +11,7 @@ namespace RayTracer
     {
         public Vec3Point Point;
         public Vec3 Normal;
+        public Material Material;
         public double T;
         public bool FrontFace;
 
